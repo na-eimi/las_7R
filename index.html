@@ -1,0 +1,598 @@
+<html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7R</title>
+    <style>
+        * {
+            margin: 1;
+            padding: 1;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1d6c8c ;
+            background: linear-gradient(135deg, #00b940  0%, #46fe86  50%, #46fead 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(198, 255, 76 );
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '♻️';
+            position: absolute;
+            font-size: 8em;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            opacity: 0.95;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            margin-bottom: 45px;
+            padding: 35px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-left: 5px solid #00b894;
+        }
+
+        .section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .section h2 {
+            color: #00b894;
+            font-size: 2.4em;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #00cec9;
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-icon {
+            font-size: 1.2em;
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            margin: 25px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1fbc00,#a9ffa0 );
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6em;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .video-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .r-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 35px 0;
+        }
+
+        .r-card {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .r-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #00b894;
+            box-shadow: 0 20px 50px rgba(0, 184, 148, 0.2);
+        }
+
+        .r-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .r-title {
+            font-size: 1.8em;
+            color: #2d3436;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .r-description {
+            color: #636e72;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 35px 0;
+        }
+
+        .image-item {
+            background: #95038a ;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(163, 229, 190  );
+            transition: all 0.3s ease;
+        }
+
+        .image-item:hover {
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 15px 40px rgba(169, 213, 187 );
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(45deg, #fd79a8, #fdcb6e);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .image-caption {
+            padding: 20px;
+            text-align: center;
+            background: white;
+            font-style: italic;
+            color: #636e72;
+            font-size: 1.1em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        th {
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px 18px;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 1.05em;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #e8f5e8;
+            transition: background-color 0.3s ease;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 35px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(116, 185, 255, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .multimedia-table {
+            background: #f8f9fa;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid #e9ecef;
+        }
+
+        .multimedia-table th {
+            background: linear-gradient(45deg, #e17055, #fd79a8);
+        }
+
+        .media-placeholder {
+            width: 70px;
+            height: 45px;
+            background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .benefit-item {
+            background: linear-gradient(135deg, #a8e6cf, #dcedc1);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(45deg, #2d3436, #636e72);
+            color: white;
+            border-radius: 20px;
+            margin-top: 50px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+            
+            .r-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <header>
+        <h1>Las 7R</h1>
+        <p>Rediseñar,Reducir,Reutilizar,Reparar,Renovar,Recuperar y Reciclar</p>
+    </header>
+
+    <section class="section">
+        <h2><span class="section-icon">🍃</span> ¿Qúe son las 7R?</h2>
+        <p>Las "7 erres" son un conjunto de acciones que promueven la sostenibilidad y la economía circular, ampliando las tradicionales 3 erres (Reducir, Reutilizar y Reciclar). Estas son una forma de gestionar los recursos de forma más eficiente y sostenible, minimizando el impacto ambiental y promoviendo un modelo económico circular. </p>
+        <center> <div class="video-wrapper">
+  <iframe width="560" height="350"
+    src="https://www.youtube.com/embed/YGMeO5L_LAs"
+    title="Video alusivo a las 7R"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></center>
+  </iframe>
+<br>
+<section class="section">
+            <h2><span class="section-icon"> ♻️</span>La aplicación de las 7R trae consigo:</h2>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🗑️</div>
+                    <strong>La reducción de residuos</strong><br>
+                    Disminución de basura en los vertederos, lo que a su vez reduce la contaminación del suelo, agua y aire
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📊</div>
+                    <strong>Conservación de recursos naturales</strong><br>
+                    Al implementar las 7R, se reduce la necesidad de extraer nuevas materias primas, lo que ayuda a preservar los recursos naturales finitos del planeta
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💡</div>
+                    <strong>Ahorro de energía</strong><br>
+                    Al dar uso a las 7r se reduce una significativa demanda energética
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"> 💸</div>
+                    <strong>Economía Circular</strong><br>
+                    Las 7R promueven un modelo económico donde los productos se diseñan pensando en un ciclo de vida completo, reduciendo los residuos y aprovechando al máximo los recursos
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💎</div>
+                    <strong>Costos de producción</strong><br>
+                    Al reutilizar, reparar,o reciclar, se reducen los costos de producción, generando nuevas oportunidades de negocio creando empleos en la industria del reciclaje
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"> 🤲</div>
+                    <strong>Mejoran la calidad de vida</strong><br>
+                    Al preservar los recursos naturales, se contribuye a una mejor calidad de vida para las generaciones actuales y futuras
+                </div>
+ <div class="benefit-item">
+                    <div class="benefit-icon"> 👫</div>
+                    <strong>Aumento de conciencia ambiental</strong><br>
+              Se esclarecen los objetivos de las 7R y se reconoce el impacto del ser humano llegando a una reflexión sobre los residuos que genera el hombre
+            </div>
+<div class="benefit-item">
+                    <div class="benefit-icon"> 🌎</div>
+                    <strong>Generación de leyes protectoras</strong><br>
+                    Se busca encontrar un enfoque integral sobre el cual la ciudadania se regule apartir de normativas que protejan y cuiden el medio ambiente
+         </div>
+        </section>
+<br>
+
+</div>    <section class="section">
+ 
+<h2><span class="section-icon">🌱</span>Cada 7R</h2>
+
+       <div class="r-grid">
+            <article class="r-card">
+                <div class="r-icon">🛠️</div>
+                <h3 class="r-title">Rediseñar</h3>
+                <p class="r-description">Implica repensar y transformar productos y sistemas para que sean más sostenibles y eficientes usando materiales eco-amigables para aumentar la durabilidad, facilitar el reciclaje y optimizar el uso de recursos</p>
+            </article>
+            <article class="r-card">
+                <div class="r-icon">➖</div>
+                <h3 class="r-title">Reducir</h3>
+                <p class="r-description">Disminuir el consumo de recursos y la generación de residuos, utilizando solo lo necesario para evitar el desperdicios optimizando su consumo</p>
+            </article>
+            <article class="r-card">
+                <div class="r-icon">♾️</div>
+                <h3 class="r-title">Reutilizar</h3>
+                <p class="r-description">Darle una nueva vida a un producto o material para usarlo nuevamente, evitando su descarte y reduciendo la necesidad de consumir recursos nuevos.</p>
+            </article>
+            <article class="r-card">
+                <div class="r-icon">🧰 </div>
+                <h3 class="r-title">Reparar</h3>
+                <p class="r-description">Intervenir un producto para corregir fallas o daños, devolviéndole su funcionalidad y prolongando su uso, con el fin de evitar su reemplazo prematuro</p>
+            </article>
+            <article class="r-card">
+                <div class="r-icon">⚙️</div>
+                <h3 class="r-title">Renovar</h3>
+                <p class="r-description">Actualizar o mejorar un producto usado para devolverle funcionalidad, valor o apariencia, extendiendo su vida útil y evitando su descarte</p>
+            </article>
+            <article class="r-card">
+                <div class="r-icon">🔋</div>
+                <h3 class="r-title">Recuperar</h3>
+                <p class="r-description">Obtener materiales o componentes útiles a partir de productos que ya no pueden usarse, para reincorporarlos al ciclo productivo</p>
+            </article>
+            <article class="r-card">
+                <div class="r-icon">🗑️</div>
+                <h3 class="r-title">Reciclar</h3>
+                <p class="r-description">Procesar materiales usados para convertirlos en materias primas que puedan ser utilizadas nuevamente en la fabricación de nuevos productos</p>
+            </article>
+        </div>
+    </section>
+<br>
+ <section class="section">
+        <h2><span class="section-icon">🐢</span> Tabla 7 erres</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Principio</th>
+                    <th>Descripción</th>
+                    <th>Ejemplo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Reducir</td>
+                    <td>Disminuir consumo y residuos.</td>
+                    <td>Comprar productos a granel.</td>
+                </tr>
+                <tr>
+                    <td>Reutilizar</td>
+                    <td>Usar productos varias veces.</td>
+                    <td>Utilizar frascos para almacenar.</td>
+                </tr>
+                <tr>
+                    <td>Reciclar</td>
+                    <td>Transformar residuos en nuevos materiales.</td>
+                    <td>Separar basura para reciclaje.</td>
+                </tr>
+                <tr>
+                    <td>Restaurar</td>
+                    <td>Recuperar ecosistemas.</td>
+                    <td>Plantar árboles en áreas degradadas.</td>
+                </tr>
+                <tr>
+                    <td>Rechazar</td>
+                    <td>No consumir productos dañinos.</td>
+                    <td>Evitar plásticos de un solo uso.</td>
+                </tr>
+                <tr>
+                    <td>Reparar</td>
+                    <td>Arreglar objetos para alargar vida útil.</td>
+                    <td>Reparar electrodomésticos.</td>
+                </tr>
+                <tr>
+                    <td>Recuperar</td>
+                    <td>Aprovechar energía y materiales.</td>
+                    <td>Compostar residuos orgánicos.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+<br>
+  <div class="video-wrapper" style="text-align: center; margin-top: 20px;">
+  <iframe width="900" height="900"
+    src="https://www.youtube.com/embed/Qk4JQ_wPcqM"
+    title="Mi cartel sobre las 7R"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+<br>
+    <section class="section">
+        <h2><span class="section-icon">❤️</span> Cada imagen representa</h2>
+        <div class="image-gallery">
+             <style>
+    .image-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .image-item {
+      text-align: center;
+      max-width: 300px;
+    }
+
+    .image-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .image-caption {
+      margin-top: 8px;
+      font-size: 16px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="image-gallery">
+    <div class="image-item">
+      <img src="https://i.pinimg.com/736x/20/e7/00/20e7004dd60bb790e6628d675e9d25f3.jpg" alt="jpg" />
+      <p class="image-caption">Un compromiso ciudadano</p>
+    </div>
+    <div class="image-item">
+      <img src="https://i.pinimg.com/736x/8d/ce/49/8dce49f6ef80bd612abcc822d3b2d913.jpg" alt="jpg" />
+      <p class="image-caption">Amor a la naturaleza</p>
+    </div>
+    <div class="image-item">
+      <img src="https://i.pinimg.com/736x/12/6d/a5/126da524547e780948836c7e11bb25f9.jpg" alt="jpg" />
+      <p class="image-caption">Protección ambiental</p>
+    </div>        
+</div>
+    </section>
+<footer>
+            <p> ¡Hola! soy Nancy Eimi Romero De Hilario la creadora de esta página web</p>
+    <p>Me encantaría que entrarás a el siguiente sitio y descubras a mi hermosa comunidad de Tlachichuca y el como se han implementado a las 7R:</p>
+    <a href="https://na-eimi.github.io/las-7-r/" target="_blank">Tlachichuca Puebla</a>
+</body>
+</div>
+</body>
+</html>
